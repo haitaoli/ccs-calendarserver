@@ -410,6 +410,15 @@
 		</dict>
 	</dict>
 
+	<key>DirectoryService</key>
+	<dict>
+		<key>Enabled</key>
+		<true/>
+
+		<key>type</key>
+		<string>external</string>
+	</dict>
+
 	<key>DirectoryRealmName</key>
 	<string></string>
 
@@ -594,6 +603,16 @@
 			<key>EndpointDescriptor</key>
 			<string>unix:path=/var/run/collabd</string>
 		</dict>
+
+        <!-- User ID -->
+        <key>UserID</key>
+        <dict>
+            <key>Enabled</key>
+            <true/>
+            <key>AllowedOverWireUnencrypted</key> <!-- advertised over non SSL? -->
+            <true/>
+        </dict>
+
 	</dict>
 
 	<!-- Logging -->
@@ -1787,7 +1806,7 @@
 	<dict>
 		<!-- How long to cache in worker and in memcached -->
 		<key>CachingSeconds</key>
-		<integer>60</integer>
+		<integer>0</integer>
 
 		<key>NegativeCachingEnabled</key>
 		<true/>

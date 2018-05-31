@@ -38,6 +38,8 @@ from txdav.who.wiki import DirectoryService as WikiDirectoryService
 from txdav.who.xml import DirectoryService as XMLDirectoryService
 from txdav.caldav.datastore.scheduling.ischedule.localservers import buildServersDB
 
+from twistedcaldav.external.directoryservice import DirectoryService as ExternalDirectoryService
+
 
 log = Logger()
 
@@ -116,6 +118,9 @@ def buildDirectory(
             if not fp.exists():
                 fp.setContent(DEFAULT_XML_CONTENT)
             directory = XMLDirectoryService(fp)
+
+        elif "external" in directoryType:
+            directory = ExternalDirectoryService()
 
         elif "opendirectory" in directoryType:
             from txdav.who.opendirectory import (

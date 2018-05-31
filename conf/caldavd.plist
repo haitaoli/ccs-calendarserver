@@ -186,6 +186,14 @@
       </dict>
     </dict>
 
+	<key>DirectoryService</key>
+	<dict>
+		<key>Enabled</key>
+		<true/>
+
+		<key>type</key>
+		<string>external</string>
+	</dict>
 
     <!--
         Special principals
@@ -264,6 +272,15 @@
         <true/>
         <key>ServicePrincipal</key>
         <string></string>
+      </dict>
+
+      <!-- User ID -->
+      <key>UserID</key>
+      <dict>
+        <key>Enabled</key>
+        <true/>
+        <key>AllowedOverWireUnencrypted</key> <!-- advertised over non SSL? -->
+        <true/>
       </dict>
 
     </dict>

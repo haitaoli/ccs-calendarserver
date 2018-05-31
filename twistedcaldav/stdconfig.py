@@ -59,6 +59,9 @@ DEFAULT_SERVICE_PARAMS = {
         "recordTypes": ["users", "groups"],
         "xmlFile": "accounts.xml",
     },
+    "external": {
+        "recordTypes": ["users", "groups"],
+    },
     "opendirectory": {
         "recordTypes": ["users", "groups"],
         "node": "/Search",
@@ -348,8 +351,8 @@ DEFAULT_CONFIG = {
     #
     "DirectoryService": {
         "Enabled": True,
-        "type": "xml",
-        "params": DEFAULT_SERVICE_PARAMS["xml"],
+        "type": "external",
+        "params": DEFAULT_SERVICE_PARAMS["external"],
     },
 
     "DirectoryRealmName": "",
@@ -907,7 +910,7 @@ DEFAULT_CONFIG = {
     },
 
     "DirectoryCaching": {
-        "CachingSeconds": 60,               # How long to cache in worker and in memcached
+        "CachingSeconds": 0,               # How long to cache in worker and in memcached
         "NegativeCachingEnabled": True,
         "LookupsBetweenPurges": 10000       # 0 = purging turned off
     },

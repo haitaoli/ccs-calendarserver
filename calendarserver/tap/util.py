@@ -81,6 +81,7 @@ from twistedcaldav.stdconfig import config
 from twistedcaldav.timezones import TimezoneCache
 from twistedcaldav.timezoneservice import TimezoneServiceResource
 from twistedcaldav.timezonestdservice import TimezoneStdServiceResource
+from twistedcaldav.external.principal import ExternalPrincipalProvisioningResource
 
 from txdav.base.datastore.dbapiclient import DBAPIConnector
 from txdav.base.datastore.subpostgres import PostgresService
@@ -95,6 +96,7 @@ from txdav.who.cache import CachingDirectoryService
 from txdav.who.util import directoryFromConfig
 
 from txweb2.auth.basic import BasicCredentialFactory
+from txweb2.auth.bearer import BearerCredentialFactory
 from txweb2.auth.tls import TLSCredentialsFactory, TLSCredentials
 from txweb2.dav import auth
 from txweb2.dav.auth import IPrincipalCredentials
@@ -413,6 +415,7 @@ def getRootResource(config, newStore, resources=None):
 
     directory = newStore.directoryService()
     principalCollection = principalResourceClass("/principals/", directory)
+    externalPrincipalCollection = ExternalPrincipalProvisioningResource("/principals/")
 
     #
     # Configure the Site and Wrappers
@@ -467,6 +470,9 @@ def getRootResource(config, newStore, resources=None):
 
             elif scheme == "basic":
                 credFactory = BasicCredentialFactory(realm)
+
+            elif scheme == "userid":
+                credFactory = BearerCredentialFactory(realm)
 
             elif scheme == TLSCredentialsFactory.scheme:
                 credFactory = TLSCredentialsFactory(realm)
@@ -538,7 +544,7 @@ def getRootResource(config, newStore, resources=None):
 
     root = rootResourceClass(
         config.DocumentRoot,
-        principalCollections=(principalCollection,),
+        principalCollections=(externalPrincipalCollection, principalCollection,),
     )
 
     root.putChild("principals", principalCollection if unavailable is None else unavailable)

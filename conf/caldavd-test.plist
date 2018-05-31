@@ -204,7 +204,7 @@
     <key>DirectoryCaching</key>
     <dict>
       <key>CachingSeconds</key>
-      <integer>10</integer>
+      <integer>0</integer>
       <key>NegativeCachingEnabled</key>
       <true/>
       <key>LookupsBetweenPurges</key>
@@ -232,6 +232,21 @@
         <string>./conf/auth/accounts-test.xml</string>
       </dict>
     </dict>
+
+	<key>DirectoryService</key>
+	<dict>
+		<key>Enabled</key>
+		<true/>
+
+		<key>type</key>
+		<string>external</string>
+
+        <key>recordTypes</key>
+        <array>
+           <string>users</string>
+           <string>groups</string>
+        </array>
+	</dict>
 
     <!-- Open Directory Service (Mac OS X) -->
     <!--
@@ -468,8 +483,16 @@
         <string>unix:path=/var/run/collabd</string>
       </dict>
 
-    </dict>
+      <!-- User ID -->
+      <key>UserID</key>
+      <dict>
+        <key>Enabled</key>
+        <true/>
+        <key>AllowedOverWireUnencrypted</key> <!-- advertised over non SSL? -->
+        <true/>
+      </dict>
 
+    </dict>
 
     <!--
         Logging

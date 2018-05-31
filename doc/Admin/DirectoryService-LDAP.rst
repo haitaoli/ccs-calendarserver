@@ -255,7 +255,7 @@ the DirectoryCaching dict is a top-level dict in caldavd.plist):
       
       <!-- How long to cache in worker and in memcached -->
       <key>CachingSeconds</key>
-      <integer>60</integer>
+      <integer>0</integer>
       <key>NegativeCachingEnabled</key>
       <true/>
       <!-- 0 = purging turned off -->
