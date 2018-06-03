@@ -1,9 +1,9 @@
 from twext.who.idirectory import RecordType, FieldName
-from twext.who.directory import DirectoryRecord
 from twisted.internet.defer import inlineCallbacks, returnValue, succeed
 from twistedcaldav.directory.principal import DirectoryCalendarPrincipalResource
 from txweb2.dav.resource import DAVPrincipalCollectionResource
 from directoryservice import DirectoryService
+from directoryrecord import DirectoryRecord
 
 class ExternalPrincipalProvisioningResource(DAVPrincipalCollectionResource):
     """
@@ -20,7 +20,7 @@ class ExternalPrincipalProvisioningResource(DAVPrincipalCollectionResource):
     def principalForUser(self, user):
         record = DirectoryRecord(self.service, {
           FieldName.uid: unicode(user),
-          FieldName.recordType: RecordType.user
+          FieldName.recordType: RecordType.user,
         })
 
         returnValue(self.principalForRecord(record))
