@@ -26,7 +26,7 @@ class BearerCredentialFactory(object):
         @see L{ICredentialFactory.decode}
         """
         try:
-            creds = credentials.UsernamePassword(int(response), None)
+            creds = credentials.UsernamePassword(response, '')
         except:
             raise error.LoginFailed('Invalid credentials')
 
