@@ -13,7 +13,7 @@ class DirectoryRecord(BaseDirectoryRecord):
             FieldName.recordType: RecordType.user,
             FieldName.uid: uid,
             FieldName.shortNames: [uid],
-            # FieldName.fullNames: [u'userFullName'],
+            FieldName.fullNames: [uid],
             BaseFieldName.hasCalendars: True,
             BaseFieldName.hasContacts: False,
             BaseFieldName.loginAllowed: True,
